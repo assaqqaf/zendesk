@@ -2,7 +2,6 @@
 
 namespace NotificationChannels\Zendesk;
 
-use DateTime;
 use NotificationChannels\Exception\CouldNotCreateMessage;
 
 class ZendeskMessage
@@ -66,7 +65,7 @@ class ZendeskMessage
         return $this;
     }
 
-        /**
+    /**
      * Set the ticket customer name.
      *
      * @param string $name
@@ -122,7 +121,7 @@ class ZendeskMessage
      */
     public function type($type)
     {
-        if (!in_array($type, ['problem', 'incident', 'question', 'task'])) {
+        if (! in_array($type, ['problem', 'incident', 'question', 'task'])) {
             throw CouldNotCreateMessage::invalidIndent($priority);
         }
         $this->type = $type;
@@ -132,7 +131,7 @@ class ZendeskMessage
 
     /**
      * Set the ticket priority.
-     * Allowed values are urgent, high, normal, or low
+     * Allowed values are urgent, high, normal, or low.
      *
      * @param string $priority
      *
@@ -140,7 +139,7 @@ class ZendeskMessage
      */
     public function priority($priority)
     {
-        if (!in_array($priority, ['urgent', 'high', 'normal', 'low'])) {
+        if (! in_array($priority, ['urgent', 'high', 'normal', 'low'])) {
             throw CouldNotCreateMessage::invalidPriority($priority);
         }
         $this->priority = $priority;

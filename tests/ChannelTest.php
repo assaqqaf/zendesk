@@ -2,15 +2,14 @@
 
 namespace NotificationChannels\Zendesk\Test;
 
+use Mockery;
 use Zendesk\API\Client;
 use GuzzleHttp\Psr7\Response;
+use Orchestra\Testbench\TestCase;
 use Illuminate\Notifications\Notification;
-use Mockery;
-use NotificationChannels\Zendesk\Exceptions\CouldNotSendNotification;
-use NotificationChannels\Zendesk\Exceptions\InvalidConfiguration;
 use NotificationChannels\Zendesk\ZendeskChannel;
 use NotificationChannels\Zendesk\ZendeskMessage;
-use Orchestra\Testbench\TestCase;
+use NotificationChannels\Zendesk\Exceptions\CouldNotSendNotification;
 
 class ChannelTest extends TestCase
 {
@@ -20,7 +19,7 @@ class ChannelTest extends TestCase
         $this->app['config']->set('services.zendesk', [
             'subdomin' => 'ZENDESK_API_SUBDOMIN',
             'username' => 'ZENDESK_API_USERNAME',
-            'token' => 'ZENDESK_API_TOKEN'
+            'token' => 'ZENDESK_API_TOKEN',
         ]);
 
         $response = new Response(200);
@@ -45,7 +44,7 @@ class ChannelTest extends TestCase
                     'type' => null,
                     'status' => 'new',
                     'tags' => [],
-                    'priority' => 'normal'
+                    'priority' => 'normal',
                 ])
             ->andReturn($response);
         $channel = new ZendeskChannel($client);
@@ -60,7 +59,7 @@ class ChannelTest extends TestCase
         $this->app['config']->set('services.zendesk', [
             'subdomin' => 'ZENDESK_API_SUBDOMIN',
             'username' => 'ZENDESK_API_USERNAME',
-            'token' => 'ZENDESK_API_TOKEN'
+            'token' => 'ZENDESK_API_TOKEN',
         ]);
 
         $response = new Response(500);
@@ -85,7 +84,7 @@ class ChannelTest extends TestCase
                     'type' => null,
                     'status' => 'new',
                     'tags' => [],
-                    'priority' => 'normal'
+                    'priority' => 'normal',
                 ])
             ->andReturn($response);
         $channel = new ZendeskChannel($client);
@@ -96,15 +95,13 @@ class ChannelTest extends TestCase
 class TestNotifiable
 {
     use \Illuminate\Notifications\Notifiable;
-
 }
-
 
 class TestNotification extends Notification
 {
     public function toZendesk($notifiable)
     {
-        return 
+        return
             (new ZendeskMessage('Ticket Subject'))
                 ->from('Test User', 'user@example.org')
                 ->content('This will be sent as ticket body');

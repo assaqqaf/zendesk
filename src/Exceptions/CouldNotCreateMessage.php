@@ -1,4 +1,5 @@
 <?php
+
 namespace NotificationChannels\Zendesk\Exceptions;
 
 class CouldNotCreateMessage extends \Exception
@@ -7,6 +8,7 @@ class CouldNotCreateMessage extends \Exception
     {
         return new static("Ticket type `{$type}` is invalid. Allowed values are problem, incident, question, or task.");
     }
+
     public static function invalidPriority($priority)
     {
         return new static("Ticket priority `{$priority}` is invalid. It should be urgent, high, normal, or low.");
