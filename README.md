@@ -1,12 +1,12 @@
 # Zendesk notifications channel for Laravel 5.3
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/laravel-notification-channels/zendesk/master.svg?style=flat-square)](https://travis-ci.org/assaqqaf/zendesk)
-[![StyleCI](https://styleci.io/repos/65379321/shield)](https://styleci.io/repos/65379321)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/9015691f-130d-4fca-8710-72a010abc684.svg?style=flat-square)](https://insight.sensiolabs.com/projects/9015691f-130d-4fca-8710-72a010abc684)
-[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/zendesk.svg?style=flat-square)](https://scrutinizer-ci.com/g/assaqqaf/zendesk)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/zendesk/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/assaqqaf/zendesk/?branch=master)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/zendesk.svg?style=flat-square)](https://packagist.org/packages/assaqqaf/zendesk)
+[![Build Status](https://travis-ci.org/assaqqaf/zendesk.svg?branch=master)](https://travis-ci.org/assaqqaf/zendesk)
+[![StyleCI](https://styleci.io/repos/78912239/shield?branch=master)](https://styleci.io/repos/78912239)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/15d138a5-3c27-4167-a5ce-1c559ae5311f/mini.png)](https://insight.sensiolabs.com/projects/15d138a5-3c27-4167-a5ce-1c559ae5311f)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/assaqqaf/zendesk/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/assaqqaf/zendesk/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/assaqqaf/zendesk/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/assaqqaf/zendesk/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/assaqqaf/zendesk/badges/build.png?b=master)](https://scrutinizer-ci.com/g/assaqqaf/zendesk/build-status/master)
 
 This package makes it easy to create [Zendesk API](https://developer.zendesk.com/) with Laravel 5.3.
 
@@ -89,18 +89,13 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 $ composer test
 ```
 
-## Security
-
-If you discover any security related issues, please email m.pociot@gmail.com instead of using the issue tracker.
-
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [Marcel Pociot](https://github.com/mpociot)
-- [All Contributors](../../contributors)
+- [Abdullah Mohammed](https://github.com/assaqqaf)
 
 ## License
 
