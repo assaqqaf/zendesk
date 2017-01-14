@@ -165,7 +165,7 @@ class ZendeskMessage
      *
      * @return $this
      */
-    public function public()
+    public function visible()
     {
         $this->isPublic = true;
 

@@ -1,4 +1,4 @@
-# Zendesk notifications channel for Laravel 5.3
+# Zendesk notifications channel for Laravel 5.3 [WIP]
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://travis-ci.org/assaqqaf/zendesk.svg?branch=master)](https://travis-ci.org/assaqqaf/zendesk)
