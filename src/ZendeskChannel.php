@@ -47,9 +47,8 @@ class ZendeskChannel
      * Prepare the parameters before to be send.
      *
      * @param mixed $notifiable
-     *
      */
-    private function prepareParameter($notifiable) 
+    private function prepareParameter($notifiable)
     {
         // Check if the requester data is not set
         if (! isset($this->parameters['requester']['name']) || $this->parameters['requester']['name'] === '') {
