@@ -1,10 +1,9 @@
 <?php
 
-namespace NotificationChannels\Clickatell;
+namespace NotificationChannels\Zendesk;
 
 use Zendesk\API\Client;
 use Illuminate\Support\ServiceProvider;
-use NotificationChannels\Zendesk\ZendeskChannel;
 use NotificationChannels\Zendesk\Exceptions\InvalidConfiguration;
 
 class ZendeskServiceProvider extends ServiceProvider
