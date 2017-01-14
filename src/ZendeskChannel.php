@@ -3,6 +3,7 @@
 namespace NotificationChannels\Zendesk;
 
 use Zendesk\API\Client;
+use Illuminate\Support\Arr;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Zendesk\Exceptions\CouldNotSendNotification;
 
@@ -29,6 +30,16 @@ class ZendeskChannel
     public function send($notifiable, Notification $notification)
     {
         $zendeskParameters = $notification->toZendesk($notifiable)->toArray();
+
+        if(!isset($zendeskParameters['requester']['name']) or $zendeskParameters['requester']['name'] ===''){
+            $routing = collect($notifiable->routeNotificationFor('Zendesk'));
+            if (! Arr::has($routing, ['name', 'email'])) {
+                return;
+            }
+
+            $zendeskParameters['requester']['name'] = $routing['name'];
+            $zendeskParameters['requester']['email'] = $routing['email'];
+        }
 
         $response = $this->client->tickets()->create($zendeskParameters);
 
