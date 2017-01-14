@@ -31,7 +31,7 @@ class ZendeskChannel
     {
         $zendeskParameters = $notification->toZendesk($notifiable)->toArray();
 
-        if(!isset($zendeskParameters['requester']['name']) or $zendeskParameters['requester']['name'] ===''){
+        if (!isset($zendeskParameters['requester']['name']) or $zendeskParameters['requester']['name'] ==='') {
             $routing = collect($notifiable->routeNotificationFor('Zendesk'));
             if (! Arr::has($routing, ['name', 'email'])) {
                 return;

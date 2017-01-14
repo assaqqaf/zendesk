@@ -149,7 +149,6 @@ class TestNotifiable
 class TestNotifiableWithoutRoute
 {
     use \Illuminate\Notifications\Notifiable;
-
 }
 
 class TestNotification extends Notification
