@@ -44,7 +44,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_set_the_message_as_public()
     {
-        $this->message->public();
+        $this->message->visible();
 
         $this->assertTrue(Arr::get($this->message->toArray(), 'comment.public'));
     }
