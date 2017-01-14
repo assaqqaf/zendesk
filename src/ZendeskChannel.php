@@ -12,6 +12,9 @@ class ZendeskChannel
     /** @var Client */
     protected $client;
 
+    /** @var array */
+    protected $parameters;
+
     /** @param Client $client */
     public function __construct(Client $client)
     {
@@ -29,22 +32,34 @@ class ZendeskChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        $zendeskParameters = $notification->toZendesk($notifiable)->toArray();
+        $this->parameters = $notification->toZendesk($notifiable)->toArray();
 
-        if (! isset($zendeskParameters['requester']['name']) || $zendeskParameters['requester']['name'] === '') {
+        $this->prepareParameter($notifiable);
+
+        $response = $this->client->tickets()->create($this->parameters);
+
+        if ($response->getStatusCode() !== 200) {
+            throw CouldNotSendNotification::serviceRespondedWithAnError($response);
+        }
+    }
+
+    /**
+     * Prepare the parameters before to be send.
+     *
+     * @param mixed $notifiable
+     *
+     */
+    private function prepareParameter($notifiable) 
+    {
+        // Check if the requester data is not set
+        if (! isset($this->parameters['requester']['name']) || $this->parameters['requester']['name'] === '') {
             $routing = collect($notifiable->routeNotificationFor('Zendesk'));
             if (! Arr::has($routing, ['name', 'email'])) {
                 return;
             }
 
-            $zendeskParameters['requester']['name'] = $routing['name'];
-            $zendeskParameters['requester']['email'] = $routing['email'];
-        }
-
-        $response = $this->client->tickets()->create($zendeskParameters);
-
-        if ($response->getStatusCode() !== 200) {
-            throw CouldNotSendNotification::serviceRespondedWithAnError($response);
+            $this->parameters['requester']['name'] = $routing['name'];
+            $this->parameters['requester']['email'] = $routing['email'];
         }
     }
 }
