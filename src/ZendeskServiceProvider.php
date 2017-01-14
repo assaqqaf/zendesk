@@ -1,4 +1,5 @@
 <?php
+
 namespace NotificationChannels\Clickatell;
 
 use Zendesk\API\Client;
@@ -15,7 +16,7 @@ class ZendeskServiceProvider extends ServiceProvider
             ->needs(Client::class)
             ->give(function () {
                 $config = config('services.zendesk');
-                if(!isset($config['subdomin'], $config['username'], $config['token'])) {
+                if (! isset($config['subdomin'], $config['username'], $config['token'])) {
                     throw InvalidConfiguration::configurationNotSet();
                 }
 

@@ -2,7 +2,6 @@
 
 namespace NotificationChannels\Zendesk\Test;
 
-use DateTime;
 use Illuminate\Support\Arr;
 use NotificationChannels\Zendesk\ZendeskMessage;
 
