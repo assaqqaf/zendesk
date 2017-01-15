@@ -2,10 +2,10 @@
 
 namespace NotificationChannels\Zendesk;
 
-use Illuminate\Notifications\Notification;
 use Illuminate\Support\Arr;
-use NotificationChannels\Zendesk\Exceptions\CouldNotSendNotification;
 use Zendesk\API\HttpClient;
+use Illuminate\Notifications\Notification;
+use NotificationChannels\Zendesk\Exceptions\CouldNotSendNotification;
 
 class ZendeskChannel
 {
