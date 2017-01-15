@@ -38,17 +38,18 @@ class ZendeskMessage
      *
      * @return static
      */
-    public static function create($subject = '')
+    public static function create($subject = '', $description = '')
     {
-        return new static($subject);
+        return new static($subject, $description);
     }
 
     /**
      * @param string $subject
      */
-    public function __construct($subject = '')
+    public function __construct($subject = '', $description = '')
     {
         $this->subject = $subject;
+        $this->content($description);
     }
 
     /**
@@ -92,6 +93,7 @@ class ZendeskMessage
      */
     public function content($content)
     {
+        $this->description = $content;
         $this->content = $content;
 
         return $this;

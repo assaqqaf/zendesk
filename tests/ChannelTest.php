@@ -3,13 +3,12 @@
 namespace NotificationChannels\Zendesk\Test;
 
 use Mockery;
-use Zendesk\API\Client;
+use Zendesk\API\HttpClient;
 use GuzzleHttp\Psr7\Response;
 use Orchestra\Testbench\TestCase;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Zendesk\ZendeskChannel;
 use NotificationChannels\Zendesk\ZendeskMessage;
-use NotificationChannels\Zendesk\Exceptions\CouldNotSendNotification;
 
 class ChannelTest extends TestCase
 {
@@ -23,7 +22,7 @@ class ChannelTest extends TestCase
         ]);
 
         $response = new Response(200);
-        $client = Mockery::mock(Client::class);
+        $client = Mockery::mock(HttpClient::class);
         $client->shouldReceive('tickets')
             ->once()
             ->andReturn($client)
@@ -40,47 +39,7 @@ class ChannelTest extends TestCase
                         'name' => 'Test User',
                         'email' => 'user@example.org',
                     ],
-                    'description' => '',
-                    'type' => null,
-                    'status' => 'new',
-                    'tags' => [],
-                    'priority' => 'normal',
-                ])
-            ->andReturn($response);
-        $channel = new ZendeskChannel($client);
-        $channel->send(new TestNotifiable(), new TestNotification());
-    }
-
-    /** @test */
-    public function it_throws_an_exception_when_it_could_not_send_the_notification()
-    {
-        $this->setExpectedException(CouldNotSendNotification::class);
-
-        $this->app['config']->set('services.zendesk', [
-            'subdomin' => 'ZENDESK_API_SUBDOMIN',
-            'username' => 'ZENDESK_API_USERNAME',
-            'token' => 'ZENDESK_API_TOKEN',
-        ]);
-
-        $response = new Response(500);
-        $client = Mockery::mock(Client::class);
-        $client->shouldReceive('tickets')
-            ->once()
-            ->andReturn($client)
-            ->shouldReceive('create')
-            ->once()
-            ->with(
-                [
-                    'subject' => 'Ticket Subject',
-                    'comment' => [
-                        'body' => 'This will be sent as ticket body',
-                        'public' => false,
-                    ],
-                    'requester' => [
-                        'name' => 'Test User',
-                        'email' => 'user@example.org',
-                    ],
-                    'description' => '',
+                    'description' => 'This will be sent as ticket body',
                     'type' => null,
                     'status' => 'new',
                     'tags' => [],

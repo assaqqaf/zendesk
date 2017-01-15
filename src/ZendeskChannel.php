@@ -2,17 +2,17 @@
 
 namespace NotificationChannels\Zendesk;
 
-use Zendesk\API\Client;
+use Zendesk\API\HttpClient;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Zendesk\Exceptions\CouldNotSendNotification;
 
 class ZendeskChannel
 {
-    /** @var Client */
+    /** @var HttpClient */
     protected $client;
 
-    /** @param Client $client */
-    public function __construct(Client $client)
+    /** @param HttpClient $client */
+    public function __construct(HttpClient $client)
     {
         $this->client = $client;
     }
@@ -30,10 +30,10 @@ class ZendeskChannel
     {
         $zendeskParameters = $notification->toZendesk($notifiable)->toArray();
 
-        $response = $this->client->tickets()->create($zendeskParameters);
-
-        if ($response->getStatusCode() !== 200) {
-            throw CouldNotSendNotification::serviceRespondedWithAnError($response);
+        try {
+            $this->client->tickets()->create($zendeskParameters);
+        } catch (\Exception $e) {
+            throw CouldNotSendNotification::serviceRespondedWithAnError($e->getMessage());
         }
     }
 }
