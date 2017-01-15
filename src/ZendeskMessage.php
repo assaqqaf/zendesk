@@ -247,12 +247,12 @@ class ZendeskMessage
     public function getComment()
     {
         $comment = [];
-        
-        if($this->htmlContent !== ''){
+
+        if ($this->htmlContent !== '') {
             $comment['html_body'] = $this->htmlContent;
         }
 
-        if($this->content !== ''){
+        if ($this->content !== '') {
             $comment['body'] = $this->content;
         }
 
