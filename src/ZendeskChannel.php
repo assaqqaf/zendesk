@@ -2,7 +2,6 @@
 
 namespace NotificationChannels\Zendesk;
 
-use Zendesk\API\Client;
 use Illuminate\Support\Arr;
 use Zendesk\API\HttpClient;
 use Illuminate\Notifications\Notification;
