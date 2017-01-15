@@ -18,7 +18,6 @@ This package makes it easy to create [Zendesk API](https://developer.zendesk.com
 	- [Available Message methods](#available-message-methods)
 - [Changelog](#changelog)
 - [Testing](#testing)
-- [Security](#security)
 - [Contributing](#contributing)
 - [Credits](#credits)
 - [License](#license)
