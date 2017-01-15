@@ -9,7 +9,6 @@ use Orchestra\Testbench\TestCase;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Zendesk\ZendeskChannel;
 use NotificationChannels\Zendesk\ZendeskMessage;
-use NotificationChannels\Zendesk\Exceptions\CouldNotSendNotification;
 
 class ChannelTest extends TestCase
 {
