@@ -81,6 +81,20 @@ class ProjectCreated extends Notification
 }
 ```
 
+In order to let your Notification know which user you are targeting, add the `routeNotificationForZendesk` method to your Notifiable model.
+
+This method needs to return the access token of the authorized Evernote user.
+
+```php
+public function routeNotificationForZendesk()
+{
+    return [
+        'name' => $this->name,
+        'email' => $this->email,
+    ];
+}
+```
+
 ### Available methods
 
 - `subject('')`: Accepts a string value for the Zendesk ticket name.
