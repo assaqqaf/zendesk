@@ -4,8 +4,8 @@ namespace NotificationChannels\Zendesk\Exceptions;
 
 class CouldNotSendNotification extends \Exception
 {
-    public static function serviceRespondedWithAnError($response)
+    public static function serviceRespondedWithAnError($message)
     {
-        return new static('Zendesk responded with an error: `'.$response->getBody()->getContents().'`');
+        return new static('Zendesk responded with an error: `'.$message);
     }
 }
