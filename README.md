@@ -76,9 +76,8 @@ class ProjectCreated extends Notification
 
     public function toZendesk($notifiable)
     {
-        return ZendeskMessage::create()
-            ->subject("Zendesk Ticket Subject")
-            ->description("This is the Zendesk Ticket description");
+        return
+            (new ZendeskMessage('Test Zendesk Notification', 'This will be sent as ticket body'));
     }
 }
 ```
@@ -87,6 +86,13 @@ class ProjectCreated extends Notification
 
 - `subject('')`: Accepts a string value for the Zendesk ticket name.
 - `description('')`: Accepts a string value for the Zendesk ticket description.
+- `from('', '')`: Accepts a string value for the Zendesk ticket requester name, and email.
+- `content('')`: Accepts a string value for the Zendesk ticket content message.
+- `type('')`:  Accepts a string value for the Zendesk ticket type. Allowed values are problem, incident, question, or task.
+- `priority('')`: Accepts a string value for the Zendesk ticket priority. Allowed values are urgent, high, normal, or low.
+- `status('')`: Accepts a string value for the Zendesk ticket status. Allowed values are new, open, pending, hold, solved or closed.
+- `visible()`: Set the comment to be public.
+- `tags([])`: Accepts an array value for the Zendesk ticket tags.
 
 
 ## Changelog
