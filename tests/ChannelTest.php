@@ -60,7 +60,7 @@ class ChannelTest extends TestCase
         ]);
 
         $response = new Response(200);
-        $client = Mockery::mock(Client::class);
+        $client = Mockery::mock(HttpClient::class);
         $client->shouldReceive('tickets')
             ->once()
             ->andReturn($client)
@@ -77,7 +77,7 @@ class ChannelTest extends TestCase
                         'name' => 'Name',
                         'email' => 'email@example.org',
                     ],
-                    'description' => '',
+                    'description' => 'This will be sent as ticket body',
                     'type' => null,
                     'status' => 'new',
                     'tags' => [],
