@@ -21,8 +21,8 @@ class ZendeskServiceProvider extends ServiceProvider
                     throw InvalidConfiguration::configurationNotSet();
                 }
 
-                $client = new HttpClient($config['subdomin'], $config['username']);
-                $client->setAuth('token', $config['token']);
+                $client = new HttpClient($config['subdomin']);
+                $client->setAuth('basic', ['username' => $config['username'], 'token' => $config['token']]);
 
                 return $client;
             });
