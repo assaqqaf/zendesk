@@ -32,6 +32,16 @@ You can install the package via composer:
 composer require laravel-notification-channels/zendesk
 ```
 
+Add the service provider to `config/app.php`:
+
+```php
+// config/app.php
+'providers' => [
+    ...
+    NotificationChannels\Zendesk\ZendeskServiceProvider::class,
+],
+```
+
 ### Setting up the Zendesk service
 
 Add your Zendesk REST API Key to your `config/services.php`:

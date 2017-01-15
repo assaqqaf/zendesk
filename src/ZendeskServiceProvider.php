@@ -2,7 +2,7 @@
 
 namespace NotificationChannels\Zendesk;
 
-use Zendesk\API\Client;
+use Zendesk\API\HttpClient as Client;
 use Illuminate\Support\ServiceProvider;
 use NotificationChannels\Zendesk\Exceptions\InvalidConfiguration;
 
