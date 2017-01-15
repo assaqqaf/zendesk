@@ -30,10 +30,10 @@ class ZendeskChannel
     {
         $zendeskParameters = $notification->toZendesk($notifiable)->toArray();
 
-        $response = $this->client->tickets()->create($zendeskParameters);
-
-        if ($response->getStatusCode() !== 200) {
-            throw CouldNotSendNotification::serviceRespondedWithAnError($response);
+        try {
+            $response = $this->client->tickets()->create($zendeskParameters);
+        } catch (\Zendesk\API\Exceptions\ApiResponseException $e) {
+            throw CouldNotSendNotification::serviceRespondedWithAnError($e->getMessage());
         }
     }
 }
