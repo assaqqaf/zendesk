@@ -49,7 +49,6 @@ class ChannelTest extends TestCase
         $channel = new ZendeskChannel($client);
         $channel->send(new TestNotifiable(), new TestNotification());
     }
-  
 
     /** @test */
     public function it_can_send_a_notification_and_add_requester_data_if_not_set()
