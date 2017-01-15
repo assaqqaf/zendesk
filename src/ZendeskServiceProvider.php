@@ -2,7 +2,7 @@
 
 namespace NotificationChannels\Zendesk;
 
-use Zendesk\API\HttpClient as Client;
+use Zendesk\API\HttpClient;
 use Illuminate\Support\ServiceProvider;
 use NotificationChannels\Zendesk\Exceptions\InvalidConfiguration;
 
@@ -14,7 +14,7 @@ class ZendeskServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->when(ZendeskChannel::class)
-            ->needs(Client::class)
+            ->needs(HttpClient::class)
             ->give(function () {
                 $config = config('services.zendesk');
                 if (! isset($config['subdomin'], $config['username'], $config['token'])) {

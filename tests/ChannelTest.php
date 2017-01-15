@@ -3,7 +3,7 @@
 namespace NotificationChannels\Zendesk\Test;
 
 use Mockery;
-use Zendesk\API\Client;
+use Zendesk\API\HttpClient;
 use GuzzleHttp\Psr7\Response;
 use Orchestra\Testbench\TestCase;
 use Illuminate\Notifications\Notification;
@@ -23,7 +23,7 @@ class ChannelTest extends TestCase
         ]);
 
         $response = new Response(200);
-        $client = Mockery::mock(Client::class);
+        $client = Mockery::mock(HttpClient::class);
         $client->shouldReceive('tickets')
             ->once()
             ->andReturn($client)
@@ -63,7 +63,7 @@ class ChannelTest extends TestCase
         ]);
 
         $response = new Response(500);
-        $client = Mockery::mock(Client::class);
+        $client = Mockery::mock(HttpClient::class);
         $client->shouldReceive('tickets')
             ->once()
             ->andReturn($client)
