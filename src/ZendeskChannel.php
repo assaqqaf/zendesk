@@ -77,7 +77,6 @@ class ZendeskChannel
 
     /**
      * Prepare the parameters before update request send.
-     *
      */
     public function prepareUpdateParameters()
     {
