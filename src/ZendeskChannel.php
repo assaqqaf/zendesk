@@ -36,7 +36,7 @@ class ZendeskChannel
 
         $id = $this->parameters['ticket'];
 
-        if (!is_null($id)) {
+        if (! is_null($id)) {
             return $this->updateTicket($id, $notifiable);
         }
 
