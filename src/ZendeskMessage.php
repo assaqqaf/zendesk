@@ -6,6 +6,9 @@ use NotificationChannels\Zendesk\Exceptions\CouldNotCreateMessage;
 
 class ZendeskMessage
 {
+    /** @var int|null */
+    protected $ticket;
+
     /** @var string */
     protected $subject;
 
@@ -248,6 +251,22 @@ class ZendeskMessage
     }
 
     /**
+     * Set the ticket id. If it set the system will update
+     * the ticket rather than crate a new ticket.
+     *
+     * @param int $id
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function ticket($id)
+    {
+        $this->ticket = $id;
+
+        return $this;
+    }
+
+    /**
      * Return the comment array.
      *
      * @see https://developer.zendesk.com/rest_api/docs/core/ticket_audits#audit-events Documentation of ticket comment.
@@ -287,6 +306,7 @@ class ZendeskMessage
             'priority' => $this->priority,
             'custom_fields' => $this->customFields,
             'group_id' => $this->groupId,
+            'ticket' => $this->ticket,
         ];
     }
 }

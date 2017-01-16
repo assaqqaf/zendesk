@@ -93,6 +93,42 @@ class ChannelTest extends TestCase
         $channel = new ZendeskChannel($client);
         $channel->send(new TestNotifiable(), new TestNotificationWithoutFrom());
     }
+
+    /** @test */
+    public function it_can_send_a_notification_by_updating_an_existing_ticket()
+    {
+        $this->app['config']->set('services.zendesk', [
+            'subdomin' => 'ZENDESK_API_SUBDOMIN',
+            'username' => 'ZENDESK_API_USERNAME',
+            'token' => 'ZENDESK_API_TOKEN',
+        ]);
+
+        $response = new Response(200);
+        $client = Mockery::mock(HttpClient::class);
+        $client->shouldReceive('tickets')
+            ->once()
+            ->andReturn($client)
+            ->shouldReceive('update')
+            ->once()
+            ->with(
+                12345,
+                [
+                    'comment' => [
+                        'body' => 'This will be added as new comment to an existing ticket',
+                        'public' => true,
+                    ],
+                    'type' => null,
+                    'status' => 'pending',
+                    'tags' => [],
+                    'priority' => 'normal',
+                    'custom_fields' => [],
+                    'group_id' => '',
+                ])
+            ->andReturn($response);
+
+        $channel = new ZendeskChannel($client);
+        $channel->send(new TestNotifiable(), new TestNotificationWithTicketId());
+    }
 }
 
 class TestNotifiable
@@ -136,5 +172,18 @@ class TestNotificationWithoutFrom extends Notification
             (new ZendeskMessage('Ticket Subject'))
                 ->description('This will be sent as ticket description')
                 ->content('This will be sent as ticket body');
+    }
+}
+
+class TestNotificationWithTicketId extends Notification
+{
+    public function toZendesk($notifiable)
+    {
+        return
+            (new ZendeskMessage())
+                ->ticket(12345)
+                ->visible()
+                ->status('pending')
+                ->content('This will be added as new comment to an existing ticket');
     }
 }
