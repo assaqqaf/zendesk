@@ -46,9 +46,9 @@ class ZendeskChannel
     /**
      * Send update ticket request.
      *
-     * @param mixed $notifiable
+     * @param int $id
      */
-    private function updateTicket($id, $notifiable)
+    private function updateTicket($id)
     {
         $this->prepareUpdateParameters();
 
