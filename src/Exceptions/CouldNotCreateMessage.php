@@ -9,6 +9,11 @@ class CouldNotCreateMessage extends \Exception
         return new static("Ticket type `{$type}` is invalid. Allowed values are problem, incident, question, or task.");
     }
 
+    public static function invalidStatus($status)
+    {
+        return new static("Ticket status `{$status}` is invalid. Allowed values are problem, incident, question, or task.");
+    }
+
     public static function invalidPriority($priority)
     {
         return new static("Ticket priority `{$priority}` is invalid. It should be urgent, high, normal, or low.");

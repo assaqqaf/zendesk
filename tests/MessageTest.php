@@ -3,6 +3,7 @@
 namespace NotificationChannels\Zendesk\Test;
 
 use Illuminate\Support\Arr;
+use NotificationChannels\Zendesk\Exceptions\CouldNotCreateMessage;
 use NotificationChannels\Zendesk\ZendeskMessage;
 
 class MessageTest extends \PHPUnit_Framework_TestCase
@@ -47,5 +48,29 @@ class MessageTest extends \PHPUnit_Framework_TestCase
         $this->message->visible();
 
         $this->assertTrue(Arr::get($this->message->toArray(), 'comment.public'));
+    }
+
+    /** @test */
+    public function it_throw_exeption_if_set_wrong_status()
+    {
+        $this->setExpectedException(CouldNotCreateMessage::class);
+
+        $this->message->status('wrong');
+    }
+
+    /** @test */
+    public function it_throw_exeption_if_set_wrong_type()
+    {
+        $this->setExpectedException(CouldNotCreateMessage::class);
+
+        $this->message->type('wrong');
+    }
+
+    /** @test */
+    public function it_throw_exeption_if_set_wrong_priority()
+    {
+        $this->setExpectedException(CouldNotCreateMessage::class);
+
+        $this->message->priority('wrong');
     }
 }

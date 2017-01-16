@@ -2,7 +2,7 @@
 
 namespace NotificationChannels\Zendesk;
 
-use NotificationChannels\Exception\CouldNotCreateMessage;
+use NotificationChannels\Zendesk\Exceptions\CouldNotCreateMessage;
 
 class ZendeskMessage
 {
@@ -147,7 +147,7 @@ class ZendeskMessage
     public function type($type)
     {
         if (! in_array($type, ['problem', 'incident', 'question', 'task'])) {
-            throw CouldNotCreateMessage::invalidIndent($type);
+            throw CouldNotCreateMessage::invalidType($type);
         }
         $this->type = $type;
 
@@ -180,6 +180,9 @@ class ZendeskMessage
      */
     public function status($status)
     {
+        if (! in_array($status, ['new', 'open', 'pending', 'hold', 'solved', 'closed'])) {
+            throw CouldNotCreateMessage::invalidStatus($status);
+        }
         $this->status = $status;
 
         return $this;
