@@ -252,10 +252,9 @@ class ZendeskMessage
 
     /**
      * Set the ticket id. If it set the system will update
-     * the ticket rather than crate a new ticket.
+     * the ticket rather than create a new ticket.
      *
      * @param int $id
-     * @param string $value
      *
      * @return $this
      */
