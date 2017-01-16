@@ -37,7 +37,7 @@ class ZendeskChannel
         $id = $this->parameters['ticket'];
 
         if (! is_null($id)) {
-            return $this->updateTicket($id, $notifiable);
+            return $this->updateTicket($id);
         }
 
         return $this->createNewTicket($notifiable);
@@ -78,7 +78,6 @@ class ZendeskChannel
     /**
      * Prepare the parameters before update request send.
      *
-     * @param mixed $notifiable
      */
     public function prepareUpdateParameters()
     {
