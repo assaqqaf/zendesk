@@ -245,7 +245,7 @@ class ZendeskMessage
     }
 
     /**
-     * Return the comment array
+     * Return the comment array.
      *
      * @see https://developer.zendesk.com/rest_api/docs/core/ticket_audits#audit-events Documentation of ticket comment.
      *

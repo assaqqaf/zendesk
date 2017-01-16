@@ -28,7 +28,7 @@ This package makes it easy to create [Zendesk API](https://developer.zendesk.com
 You can install the package via composer:
 
 ``` bash
-composer require laravel-notification-channels/zendesk
+composer require assaqqaf/zendesk-laravel-notification
 ```
 
 Add the service provider to `config/app.php`:
