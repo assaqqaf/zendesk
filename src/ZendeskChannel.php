@@ -64,7 +64,7 @@ class ZendeskChannel
      *
      * @param mixed $notifiable
      */
-    private function createNewTicket($notifiable) 
+    private function createNewTicket($notifiable)
     {
         $this->prepareCreateParameter($notifiable);
 
