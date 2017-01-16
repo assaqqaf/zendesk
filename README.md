@@ -108,6 +108,7 @@ public function routeNotificationForZendesk()
 - `tags([])`: Accepts an array value for the Zendesk ticket tags.
 - `customField($id, $value)`: Set a new custom filed. Accept custom filed id as integer, and the value of the filed.
 - `group('')`: Accepts an integer as the group id, to assign ticket to this group.
+- `ticket()`: Accepts an integer as the ticket id. If thicket id is set, the notification will update this ticket.
 
 
 ## Changelog
