@@ -39,13 +39,16 @@ class ChannelTest extends TestCase
                         'name' => 'Test User',
                         'email' => 'user@example.org',
                     ],
-                  'description' => 'This will be sent as ticket body',
+                    'description' => 'This will be sent as ticket description',
                     'type' => null,
                     'status' => 'new',
                     'tags' => [],
                     'priority' => 'normal',
+                    'custom_fields' => [],
+                    'group_id' => '',
                 ])
             ->andReturn($response);
+
         $channel = new ZendeskChannel($client);
         $channel->send(new TestNotifiable(), new TestNotification());
     }
@@ -77,13 +80,16 @@ class ChannelTest extends TestCase
                         'name' => 'Name',
                         'email' => 'email@example.org',
                     ],
-                    'description' => 'This will be sent as ticket body',
+                    'description' => 'This will be sent as ticket description',
                     'type' => null,
                     'status' => 'new',
                     'tags' => [],
                     'priority' => 'normal',
+                    'custom_fields' => [],
+                    'group_id' => '',
                 ])
             ->andReturn($response);
+
         $channel = new ZendeskChannel($client);
         $channel->send(new TestNotifiable(), new TestNotificationWithoutFrom());
     }
@@ -116,6 +122,7 @@ class TestNotification extends Notification
     {
         return
             (new ZendeskMessage('Ticket Subject'))
+                ->description('This will be sent as ticket description')
                 ->from('Test User', 'user@example.org')
                 ->content('This will be sent as ticket body');
     }
@@ -127,6 +134,7 @@ class TestNotificationWithoutFrom extends Notification
     {
         return
             (new ZendeskMessage('Ticket Subject'))
+                ->description('This will be sent as ticket description')
                 ->content('This will be sent as ticket body');
     }
 }

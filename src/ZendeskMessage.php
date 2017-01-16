@@ -27,11 +27,20 @@ class ZendeskMessage
     /** @var string */
     protected $content = '';
 
+    /** @var string */
+    protected $htmlContent = '';
+
     /** @var bool */
     protected $isPublic = false;
 
     /** @var string */
     protected $priority = 'normal';
+
+    /** @var array */
+    protected $customFields = [];
+
+    /** @var int */
+    protected $groupId = '';
 
     /**
      * @param string $subject
@@ -49,7 +58,8 @@ class ZendeskMessage
     public function __construct($subject = '', $description = '')
     {
         $this->subject = $subject;
-        $this->content($description);
+        $this->description = $description;
+        $this->content = $description;
     }
 
     /**
@@ -93,8 +103,21 @@ class ZendeskMessage
      */
     public function content($content)
     {
-        $this->description = $content;
         $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Set the HTML content message.
+     *
+     * @param string $html
+     *
+     * @return $this
+     */
+    public function htmlContent($html)
+    {
+        $this->htmlContent = $html;
 
         return $this;
     }
@@ -124,7 +147,7 @@ class ZendeskMessage
     public function type($type)
     {
         if (! in_array($type, ['problem', 'incident', 'question', 'task'])) {
-            throw CouldNotCreateMessage::invalidIndent($priority);
+            throw CouldNotCreateMessage::invalidIndent($type);
         }
         $this->type = $type;
 
@@ -175,17 +198,67 @@ class ZendeskMessage
     }
 
     /**
-     * Set an array of tags to add to the ticket.
+     * Add a tag to the ticket.
      *
-     * @param array $tags
+     * @param string $tag
      *
      * @return $this
      */
-    public function tags(array $tags)
+    public function tag(array $tag)
     {
-        $this->tags = $tags;
+        $this->tags[] = $tag;
 
         return $this;
+    }
+
+    /**
+     * Set the value of custom field in the new ticket.
+     *
+     * @param int $id
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function customField($id, $value)
+    {
+        $this->customFields[] = [
+            'id' => $id,
+            'value' => $value,
+        ];
+
+        return $this;
+    }
+
+    /**
+     * Set the value of group id.
+     *
+     * @param int $id
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function group($id)
+    {
+        $this->groupId = $id;
+
+        return $this;
+    }
+
+    public function getComment()
+    {
+        $comment = [];
+
+        if ($this->htmlContent !== '') {
+            $comment['html_body'] = $this->htmlContent;
+        }
+
+        if ($this->content !== '') {
+            $comment['body'] = $this->content;
+        }
+
+        $comment['public'] = $this->isPublic;
+
+        return $comment;
     }
 
     /**
@@ -195,16 +268,15 @@ class ZendeskMessage
     {
         return [
             'subject' => $this->subject,
-            'comment' => [
-                'body' => $this->content,
-                'public' => $this->isPublic,
-            ],
+            'comment' => $this->getComment(),
             'requester' => $this->requester,
             'description' => $this->description,
             'type' => $this->type,
             'status' => $this->status,
             'tags' => $this->tags,
             'priority' => $this->priority,
+            'custom_fields' => $this->customFields,
+            'group_id' => $this->groupId,
         ];
     }
 }
