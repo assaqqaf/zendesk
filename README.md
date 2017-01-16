@@ -99,13 +99,15 @@ public function routeNotificationForZendesk()
 
 - `subject('')`: Accepts a string value for the Zendesk ticket name.
 - `description('')`: Accepts a string value for the Zendesk ticket description.
-- `from('', '')`: Accepts a string value for the Zendesk ticket requester name, and email.
 - `content('')`: Accepts a string value for the Zendesk ticket content message.
+- `from('', '')`: Accepts a string value for the Zendesk ticket requester name, and email.
 - `type('')`:  Accepts a string value for the Zendesk ticket type. Allowed values are problem, incident, question, or task.
 - `priority('')`: Accepts a string value for the Zendesk ticket priority. Allowed values are urgent, high, normal, or low.
 - `status('')`: Accepts a string value for the Zendesk ticket status. Allowed values are new, open, pending, hold, solved or closed.
 - `visible()`: Set the comment to be public.
 - `tags([])`: Accepts an array value for the Zendesk ticket tags.
+- `customField($id, $value)`: Set a new custom filed. Accept custom filed id as integer, and the value of the filed.
+- `group('')`: Accepts an integer as the group id, to assign ticket to this group.
 
 
 ## Changelog

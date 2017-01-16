@@ -109,7 +109,7 @@ class ZendeskMessage
     }
 
     /**
-     * Set the HTML content message.
+     * Set the HTML content of message.
      *
      * @param string $html
      *
@@ -244,6 +244,13 @@ class ZendeskMessage
         return $this;
     }
 
+    /**
+     * Return the comment array
+     *
+     * @see https://developer.zendesk.com/rest_api/docs/core/ticket_audits#audit-events Documentation of ticket comment.
+     *
+     * @return array
+     */
     public function getComment()
     {
         $comment = [];
