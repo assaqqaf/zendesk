@@ -3,8 +3,8 @@
 namespace NotificationChannels\Zendesk\Test;
 
 use Illuminate\Support\Arr;
-use NotificationChannels\Zendesk\Exceptions\CouldNotCreateMessage;
 use NotificationChannels\Zendesk\ZendeskMessage;
+use NotificationChannels\Zendesk\Exceptions\CouldNotCreateMessage;
 
 class MessageTest extends \PHPUnit_Framework_TestCase
 {

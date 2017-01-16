@@ -236,7 +236,6 @@ class ZendeskMessage
      * Set the value of group id.
      *
      * @param int $id
-     * @param string $value
      *
      * @return $this
      */
