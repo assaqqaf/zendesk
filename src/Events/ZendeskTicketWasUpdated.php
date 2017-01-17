@@ -10,7 +10,6 @@ class ZendeskTicketWasUpdated
      * Create a new event instance.
      *
      * @param $ticket
-     * @return void
      */
     public function __construct($ticket)
     {
