@@ -210,7 +210,7 @@ class ZendeskMessage
      *
      * @return $this
      */
-    public function tag(array $tag)
+    public function tag($tag)
     {
         $this->tags[] = $tag;
 
