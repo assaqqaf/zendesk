@@ -16,5 +16,4 @@ class ZendeskTicketWasCreated
     {
         $this->ticket = $ticket;
     }
-
 }

@@ -16,5 +16,4 @@ class ZendeskTicketWasUpdated
     {
         $this->ticket = $ticket;
     }
-
 }

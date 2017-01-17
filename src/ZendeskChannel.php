@@ -5,9 +5,9 @@ namespace NotificationChannels\Zendesk;
 use Illuminate\Support\Arr;
 use Zendesk\API\HttpClient;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\Zendesk\Exceptions\CouldNotSendNotification;
 use NotificationChannels\Zendesk\Events\ZendeskTicketWasCreated;
 use NotificationChannels\Zendesk\Events\ZendeskTicketWasUpdated;
+use NotificationChannels\Zendesk\Exceptions\CouldNotSendNotification;
 
 class ZendeskChannel
 {
