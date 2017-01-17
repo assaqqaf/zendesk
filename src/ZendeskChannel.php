@@ -55,7 +55,7 @@ class ZendeskChannel
         $this->prepareUpdateParameters();
 
         try {
-            $this->client->tickets()->update($id, $this->parameters);
+            $response = $this->client->tickets()->update($id, $this->parameters);
 
             event(new ZendeskTicketWasUpdated($response));
         } catch (\Exception $e) {
