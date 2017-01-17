@@ -15,7 +15,8 @@ This package makes it easy to create [Zendesk API](https://developer.zendesk.com
 - [Installation](#installation)
     - [Setting up the Zendesk service](#setting-up-the-zendesk-service)
 - [Usage](#usage)
-	- [Available Message methods](#available-message-methods)
+    - [Available Message Methods](#available-message-methods)
+    - [Events](#Events)
 - [Changelog](#changelog)
 - [Testing](#testing)
 - [Contributing](#contributing)
@@ -95,7 +96,7 @@ public function routeNotificationForZendesk()
 }
 ```
 
-### Available methods
+### Available Message Methods
 
 - `subject('')`: Accepts a string value for the Zendesk ticket name.
 - `description('')`: Accepts a string value for the Zendesk ticket description.
@@ -110,6 +111,12 @@ public function routeNotificationForZendesk()
 - `group('')`: Accepts an integer as the group id, to assign ticket to this group.
 - `ticket()`: Accepts an integer as the ticket id. If thicket id is set, the notification will update this ticket.
 
+### Events
+
+The package trigger and event when the ticket is created or updated. The following event is available:
+
+- `NotificationChannels\Zendesk\Events\ZendeskTicketWasCreated`
+- `NotificationChannels\Zendesk\Events\ZendeskTicketWasUpdated`
 
 ## Changelog
 
