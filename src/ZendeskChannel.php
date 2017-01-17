@@ -5,6 +5,8 @@ namespace NotificationChannels\Zendesk;
 use Illuminate\Support\Arr;
 use Zendesk\API\HttpClient;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\Zendesk\Events\ZendeskTicketWasCreated;
+use NotificationChannels\Zendesk\Events\ZendeskTicketWasUpdated;
 use NotificationChannels\Zendesk\Exceptions\CouldNotSendNotification;
 
 class ZendeskChannel
@@ -53,7 +55,9 @@ class ZendeskChannel
         $this->prepareUpdateParameters();
 
         try {
-            $this->client->tickets()->update($id, $this->parameters);
+            $response = $this->client->tickets()->update($id, $this->parameters);
+
+            event(new ZendeskTicketWasUpdated($response));
         } catch (\Exception $e) {
             throw CouldNotSendNotification::serviceRespondedWithAnError($e->getMessage());
         }
@@ -69,7 +73,9 @@ class ZendeskChannel
         $this->prepareCreateParameter($notifiable);
 
         try {
-            $this->client->tickets()->create($this->parameters);
+            $response = $this->client->tickets()->create($this->parameters);
+
+            event(new ZendeskTicketWasCreated($response));
         } catch (\Exception $e) {
             throw CouldNotSendNotification::serviceRespondedWithAnError($e->getMessage());
         }
