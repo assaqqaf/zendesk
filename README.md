@@ -16,7 +16,7 @@ This package makes it easy to create [Zendesk API](https://developer.zendesk.com
     - [Setting up the Zendesk service](#setting-up-the-zendesk-service)
 - [Usage](#usage)
     - [Available Message Methods](#available-message-methods)
-    - [Events](#Events)
+    - [Events](#events)
 - [Changelog](#changelog)
 - [Testing](#testing)
 - [Contributing](#contributing)
