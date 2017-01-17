@@ -117,12 +117,10 @@ class ChannelTest extends TestCase
                         'body' => 'This will be added as new comment to an existing ticket',
                         'public' => true,
                     ],
-                    'type' => null,
                     'status' => 'pending',
                     'tags' => [],
                     'priority' => 'normal',
                     'custom_fields' => [],
-                    'group_id' => '',
                 ])
             ->andReturn($response);
 

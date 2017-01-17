@@ -86,7 +86,7 @@ class ZendeskChannel
      */
     public function prepareUpdateParameters()
     {
-        unset($this->parameters['subject'], $this->parameters['requester'], $this->parameters['description'], $this->parameters['ticket'], $this->parameters['type'], $this->parameters['description'], $this->parameters['group']);
+        unset($this->parameters['subject'], $this->parameters['requester'], $this->parameters['description'], $this->parameters['ticket'], $this->parameters['type'], $this->parameters['group_id']);
     }
 
     /**
