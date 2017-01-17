@@ -70,7 +70,7 @@ class ZendeskChannel
      */
     private function createNewTicket($notifiable)
     {
-        $this->prepareCreateParameter($notifiable);
+        $this->prepareCreateParameters($notifiable);
 
         try {
             $response = $this->client->tickets()->create($this->parameters);
@@ -86,7 +86,7 @@ class ZendeskChannel
      */
     public function prepareUpdateParameters()
     {
-        unset($this->parameters['subject'], $this->parameters['requester'], $this->parameters['description'], $this->parameters['ticket']);
+        unset($this->parameters['subject'], $this->parameters['requester'], $this->parameters['description'], $this->parameters['ticket'], $this->parameters['type'], $this->parameters['description'], $this->parameters['group']);
     }
 
     /**
@@ -94,7 +94,7 @@ class ZendeskChannel
      *
      * @param mixed $notifiable
      */
-    private function prepareCreateParameter($notifiable)
+    private function prepareCreateParameters($notifiable)
     {
         // Check if the requester data is not set
         if (! isset($this->parameters['requester']['name']) || $this->parameters['requester']['name'] === '') {
